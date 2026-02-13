@@ -1,25 +1,39 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwsWtadIOV_KnTwhorY_tZVnQyxkMOJKW5K5w_F3qq-wlDowmFoqK16U8DyPG6Gmm-O_g/exec";
+/* scroll suave mobile */
 
-const form = document.getElementById("leadForm");
-const msg = document.getElementById("msg");
+document.querySelector(".scroll-btn")
+?.addEventListener("click", () => {
+  document.querySelector(".form-section")
+    .scrollIntoView({ behavior: "smooth" });
+});
 
-form.addEventListener("submit", async (e)=>{
+
+/* GOOGLE SHEETS */
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const data = Object.fromEntries(new FormData(form).entries());
+  const data = {
+    name: form.querySelector("input[placeholder='Nome']").value,
+    email: form.querySelector("input[placeholder='E-mail']").value,
+    whatsapp: form.querySelector("input[placeholder='DDD+WhatsApp']").value
+  };
 
-  msg.innerText = "Enviando...";
+  const btn = form.querySelector("button");
+  btn.innerText = "Enviando...";
+  btn.disabled = true;
 
   try{
-    await fetch(API_URL,{
-      method:"POST",
+    await fetch("https://script.google.com/macros/s/AKfycbzf_yvEBbW3CFIWhvifzkG0iQyySHiwdPCc8MslFlKHvXlU7sXgqtYWztPv-UtGpV1ukQ/exec", {
+      method: "POST",
       body: JSON.stringify(data)
     });
 
-    msg.innerText = "✅ Inscrição realizada!";
+    btn.innerText = "Inscrição realizada✅";
     form.reset();
 
-  }catch{
-    msg.innerText = "Erro ao enviar.";
+  }catch(err){
+    btn.innerText = "Erro ❌";
+    btn.disabled = false;
   }
 });

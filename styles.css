@@ -1,130 +1,208 @@
+/* ============================= */
+/* RESET */
+/* ============================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+}
+
+body{
   font-family: Arial, Helvetica, sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* ===== FAIXA TOPO ===== */
-.topbar{
-  background:#e10600;
-  color:white;
-  text-align:center;
-  padding:10px;
-  font-weight:bold;
-  font-size:14px;
-}
 
-/* ===== HERO FULLSCREEN ===== */
-.hero{
-  position:relative;
-  height:100vh;
+/* ============================= */
+/* HERO (FUNDO GERAL) */
+/* ============================= */
+
+.hero-mobile{
+  height:125vh;
   width:100%;
-  display:flex;
-  align-items:center;
-
-  /* imagem ocupa TUDO */
-  background:url("bg.jpg") center right/cover no-repeat;
-}
-
-/* escurece lado esquerdo */
-.overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    rgba(0,0,0,0.95) 10%,
-    rgba(0,0,0,0.75) 10%,
-    rgba(0,0,0,0.3) 30%,
-    transparent
-  );
-}
-
-/* ===== TEXTO ===== */
-.content{
+  background:url("bg-mobile.jpg") center center/cover no-repeat;
   position:relative;
-  z-index:2;
-  max-width:600px;
-  padding-left:8%;
-  color:white;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+
+/* ============================= */
+/* BOTÃO MOBILE (SCROLL) */
+/* ============================= */
+
+.scroll-btn{
+  position:absolute;
+  bottom:30px;
+
+  background:#22c55e;
+  color:#000;
+
+  padding:14px 26px;
+  border-radius:10px;
+
+  font-weight:bold;
+  font-size:16px;
+
+  text-decoration:none;
+
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+
+/* ============================= */
+/* FORM SECTION */
+/* ============================= */
+
+.form-section{
+  width:100%;
+  background:#000;
+  padding:40px 20px;
+}
+
+
+/* ============================= */
+/* CONTEÚDO FORM */
+/* ============================= */
+
+.hero-content{
+  max-width:420px;
+  margin:auto;
+  text-align:left;
 }
 
 .badge{
-  background:#0f2742;
+  display:inline-block;
+  background:rgb(212, 181, 1);
   padding:6px 12px;
   border-radius:20px;
-  font-size:20px;
-  display:inline-block;
-  margin-bottom:18px;
+  font-size:14px;
+  margin-bottom:14px;
+  color: #000;
 }
 
 h1{
-  font-size:44px;
-  line-height:1.2;
-}
-h3{
-  font: size 25px;
-  line-height:2.5;
+  font-size:28px;
+  line-height:1.3;
 }
 
 .highlight{
-  color:#ffd400;
-  font-size:56px;
+  color:#facc15;
+  font-size:44px;
   font-weight:900;
-  margin:10px 0;
 }
 
-.desc{
-  color:#d9d9d9;
-  margin-bottom:25px;
+p{
+  font-size:15px;
+  margin:12px 0 20px;
+  color:#cac2c2;
 }
 
-/* ===== FORM ===== */
-.form{
-  width:360px;
+
+/* ============================= */
+/* FORM */
+/* ============================= */
+
+form{
   display:flex;
   flex-direction:column;
   gap:10px;
 }
 
-.form input{
-  padding:14px;
+input{
+  padding:12px;
+  border-radius:6px;
   border:none;
-  border-radius:4px;
 }
 
-.form button{
-  padding:16px;
-  background:#39d32d;
-  color:black;
+button{
+  background:#22c55e;
+  color:#000;
   font-weight:bold;
+
+  padding:14px;
+  border-radius:6px;
   border:none;
-  border-radius:4px;
   cursor:pointer;
+
   transition:.3s;
 }
 
-.form button:hover{
-  transform:scale(1.03);
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(34,197,94,.6);
 }
 
-/* ===== ANIMAÇÕES ===== */
-.fade-in{
-  animation:fade 1.2s ease;
-}
 
-.slide-up{
-  animation:slide 1s ease;
-}
+/* ================================================= */
+/* ================= DESKTOP ======================= */
+/* ================================================= */
 
-@keyframes fade{
-  from{opacity:0}
-  to{opacity:1}
-}
+@media(min-width:900px){
 
-@keyframes slide{
-  from{transform:translateY(40px); opacity:0}
-  to{transform:translateY(0); opacity:1}
+  /* HERO ocupa tela toda */
+  .hero-mobile{
+    height:100vh;
+    background:url("bg.jpg") center right/cover no-repeat;
+  }
+
+  /* remove layout mobile */
+  .scroll-btn{
+    display:none;
+  }
+
+  /* FORM LADO ESQUERDO FIXO */
+  .form-section{
+    position:absolute;
+    top:0;
+    left:0;
+
+    height:100vh;
+    width:520px; /* largura fixa do painel */
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+
+    padding:40px;
+
+    /* sombra lateral escura */
+    background:linear-gradient(
+      90deg,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.85) 60%,
+      rgba(0,0,0,0.0) 100%
+    );
+  }
+
+  /* FORM CARD (GLASS + SHADOW) */
+  .hero-content{
+    text-align:left;
+ 
+
+    padding:30px;
+    border-radius:20px;
+
+    background:rgba(0,0,0,0.);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(10px);
+
+  }
+
+  h1{font-size:36px}
+  .highlight{font-size:64px}
 }
 
 /* ===== FOOTER ===== */
@@ -135,68 +213,3 @@ footer{
   padding:14px;
   font-size:12px;
 }
-
-/* ===== MOBILE RESPONSIVO ===== */
-@media (max-width: 900px){
-
-  .hero{
-    height: auto;              /* permite crescer */
-    min-height: 100vh;
-    padding: 80px 0 40px 0;
-
-    /* imagem centralizada e visível */
-    background-position: center top;
-    background-size: cover;
-  }
-
-  /* overlay mais leve no celular */
-  .overlay{
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,0.95) 0%,
-      rgba(0,0,0,0.85) 40%,
-      rgba(0,0,0,0.6) 70%,
-      rgba(0,0,0,0.4) 100%
-    );
-  }
-
-  .content{
-    max-width: 100%;
-    padding: 25px;
-    text-align: center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .badge{
-    font-size:14px;
-  }
-
-  h1{
-    font-size:28px;
-  }
-
-  .highlight{
-    font-size:36px;
-  }
-
-  .subtitle{
-    font-size:18px;
-  }
-
-  .desc{
-    font-size:14px;
-  }
-
-  .form{
-    width:100%;
-    max-width:350px;
-  }
-
-  .form input,
-  .form button{
-    width:100%;
-  }
-}
-
