@@ -72,6 +72,22 @@ body{
   padding:120px 20px;
 }
 
+.form-section{
+  height:115vh;
+  width:100%;
+  background:url("bg-form.jpg") center center/cover no-repeat;
+  position:relative;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#000;
+  color:#aaa;
+  text-align:center;
+  padding:10px;
+  font-size:12px;
+}
+
 
 /* ============================= */
 /* CONTEÚDO FORM */
@@ -188,12 +204,3 @@ button:hover{
   }
 
 
-/* ===== FOOTER ===== */
-footer{
-  background:#000;
-  color:#aaa;
-  text-align:center;
-  padding:14px;
-  font-size:12px;
-}
-}
